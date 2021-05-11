@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f7f7"
+    tools:context=".pokemonData">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="393dp"
+        android:layout_height="695dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E0E9E8">
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigationView2"
+                android:layout_width="296dp"
+                android:layout_height="101dp"
+                android:background="@drawable/rounded_div"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textPokeType"
+                        android:layout_width="232dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="12dp"
+                        android:text="123"
+                        android:textAlignment="textStart"
+                        android:textColor="#3E4140"
+                        android:textSize="25sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textSearchPoke" />
+
+                    <TextView
+                        android:id="@+id/textSearchPoke"
+                        android:layout_width="230dp"
+                        android:layout_height="34dp"
+                        android:layout_marginTop="4dp"
+                        android:shadowColor="#666B6F"
+                        android:shadowDx="5"
+                        android:shadowDy="5"
+                        android:shadowRadius="1"
+                        android:text="@string/app_name"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.719"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.navigation.NavigationView>
+
+            <ImageView
+                android:id="@+id/viewPoke"
+                android:layout_width="395dp"
+                android:layout_height="229dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/navigationView2" />
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigationView"
+                android:layout_width="387dp"
+                android:layout_height="210dp"
+                android:background="#DED7FF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/navigationView3">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="396dp"
+                    android:layout_height="match_parent"
+                    android:background="#eee">
+
+                    <TextView
+                        android:id="@+id/textPokeDesc"
+                        android:layout_width="355dp"
+                        android:layout_height="141dp"
+                        android:text="Lorem ipsum"
+                        android:textColor="#3E4140"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.421"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewDescription"
+                        app:layout_constraintVertical_bias="0.694" />
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="391dp"
+                        android:layout_height="44dp"
+                        android:background="#8898A8"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="?attr/actionBarTheme"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:shadowColor="#666B6F"
+                        android:shadowDx="5"
+                        android:shadowDy="5"
+                        android:shadowRadius="1"
+                        android:text="Descrição"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.053"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.navigation.NavigationView>
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigationView3"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewPoke">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="#8898A8">
+
+                        <TextView
+                            android:id="@+id/labelTextDefense"
+                            android:layout_width="97dp"
+                            android:layout_height="wrap_content"
+                            android:text="Defense"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/labelTextHP"
+                            android:layout_width="97dp"
+                            android:layout_height="wrap_content"
+                            android:text="HP"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/labelTextSpeed"
+                            android:layout_width="97dp"
+                            android:layout_height="wrap_content"
+                            android:text="Speed"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/labelTextAttack"
+                            android:layout_width="97dp"
+                            android:layout_height="wrap_content"
+                            android:text="Attack"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:background="#eee">
+
+                        <TextView
+                            android:id="@+id/editTextDefense"
+                            android:layout_width="97dp"
+                            android:layout_height="match_parent"
+                            android:text="Defense"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:id="@+id/editTextHP"
+                            android:layout_width="97dp"
+                            android:layout_height="match_parent"
+                            android:text="HP"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:id="@+id/editTextSpeed"
+                            android:layout_width="97dp"
+                            android:layout_height="match_parent"
+                            android:text="Speed"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:id="@+id/editTextAttack"
+                            android:layout_width="97dp"
+                            android:layout_height="match_parent"
+                            android:text="Attack"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.navigation.NavigationView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
