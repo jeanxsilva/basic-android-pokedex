@@ -1,24 +1,13 @@
 package com.example.pokedexunifaesp;
 
-import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,34 +21,41 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-    private Button buttonSearch;
-    private EditText editPokeName;
+    private Button button;
+    private EditText edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editPokeName = (EditText) findViewById(R.id.editPokeName);
-        buttonSearch = (Button) findViewById(R.id.buttonSearch);
-        buttonSearch.setOnClickListener(new View.OnClickListener() {
+        edit = (EditText) findViewById(R.id.editPokeName);
+        button = (Button) findViewById(R.id.buttonSearch);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchPokemon searchPokemon = new searchPokemon();
-                searchPokemon.execute("https://pokeapi.co/api/v2/pokemon/" + editPokeName.getText());
+                SearchPokemon searchPoke = new SearchPokemon();
+                searchPoke.execute("https://pokeapi.co/api/v2/pokemon/" + edit.getText());
             }
         });
     }
 
-    //Classe estendendo AsyncTask para realizar a consulta do Cep em segundo plano. Uma classe Java pode ser criado dentro de outra sem problemas
-    protected class searchPokemon extends AsyncTask<String, Void, String> {
+    protected class SearchPokemon extends AsyncTask<String, Void, String> {
+        private URL requestURL;
+        private String pokeName;
+        private String pokeType;
+        private String pokeAtk;
+        private String pokeDef;
+        private String pokeHp;
+        private String pokeSpeed;
+        private String pokeURL;
+
         @Override
         protected String doInBackground(String... strings) {
             try {
-                System.out.println(strings[0]);
-                URL url = new URL(strings[0]);
+                this.requestURL = new URL(strings[0]);
 
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                HttpURLConnection con = (HttpURLConnection) this.requestURL.openConnection();
                 con.setRequestMethod("GET");
 
                 InputStream is = con.getInputStream();
@@ -71,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 while ((line = br.readLine()) != null) {
                     out.append(line + "\n");
                 }
+
                 is.close();
 
                 return out.toString();
@@ -79,50 +76,49 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             return null;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            //Este método é acionado após doInBackground acessar o serviço web e baixar os dados da consulta
             try {
-                startResultActivity(parseJSON(result));
-            }catch (Exception e){
-                System.out.println(e);
-            }
-        }
+                JSONObject json = parseJSON(result);
 
-        private void startResultActivity(JSONObject resultJson){
-            try{
-            Intent intentResult = new Intent(MainActivity.this, pokemonData.class);
+                if (this.requestURL.toString().contains("https://pokeapi.co/api/v2/pokemon-species/")) {
+                    Intent intent = new Intent(MainActivity.this, PokemonData.class);
 
-            String pokeName = resultJson.getString("name");
-                intentResult.putExtra("pokeName", pokeName);
+                    intent.putExtra("pokeName", this.pokeName);
+                    intent.putExtra("pokeType", this.pokeType);
+                    intent.putExtra("pokeAtk", this.pokeAtk);
+                    intent.putExtra("pokeDef", this.pokeDef);
+                    intent.putExtra("pokeHp", this.pokeHp);
+                    intent.putExtra("pokeSpeed", this.pokeSpeed);
+                    intent.putExtra("pokeURL", this.pokeURL);
+                    intent.putExtra("pokeDesc", json.getJSONArray("flavor_text_entries").getJSONObject(1).getString("flavor_text"));
 
-            String pokeType = resultJson.getJSONArray("types")
-                    .getJSONObject(0)
-                    .getJSONObject("type")
-                    .getString("name");
-                intentResult.putExtra("pokeType", pokeType);
+                    startActivity(intent);
+                } else {
+                    SearchPokemon poke = new SearchPokemon();
 
-            String pokeSprite = resultJson.getJSONObject("sprites")
-                    .getJSONObject("other")
-                    .getJSONObject("official-artwork")
-                    .getString("front_default");
-                intentResult.putExtra("pokeSprite", pokeSprite);
+                    poke.pokeName = json.getString("name");
+                    poke.pokeType = json.getJSONArray("types").getJSONObject(0).getJSONObject("type").getString("name");
+                    poke.pokeHp = json.getJSONArray("stats").getJSONObject(0).getString("base_stat");
+                    poke.pokeAtk = json.getJSONArray("stats").getJSONObject(1).getString("base_stat");
+                    poke.pokeDef = json.getJSONArray("stats").getJSONObject(2).getString("base_stat");
+                    poke.pokeSpeed = json.getJSONArray("stats").getJSONObject(5).getString("base_stat");
+                    poke.pokeURL = json.getJSONObject("sprites").getJSONObject("other").getJSONObject("official-artwork").getString("front_default");
 
-            startActivity(intentResult);
-            } catch(Exception e) {
-                Intent intentError = new Intent(MainActivity.this, errorSearch.class);
-                startActivity(intentError);
+                    poke.execute("https://pokeapi.co/api/v2/pokemon-species/" + poke.pokeName);
+                }
+            } catch (Exception e) {
+                Intent intent = new Intent(MainActivity.this, ErrorSearch.class);
+                startActivity(intent);
             }
         }
 
         //O método abaixo serve para ler o JSON recebido e processar os itens contidos no mesmo
-        private JSONObject parseJSON(String data){
-            try{
-                //JSONObject recebe o JSON da consulta
+        private JSONObject parseJSON(String data) {
+            try {
                 JSONObject jsonObject = new JSONObject(data);
 
                 return jsonObject;

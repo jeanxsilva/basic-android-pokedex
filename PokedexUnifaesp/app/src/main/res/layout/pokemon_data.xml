@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f7f7f7"
-    tools:context=".pokemonData">
+    tools:context=".PokemonData">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="393dp"
-        android:layout_height="695dp"
+        android:layout_width="402dp"
+        android:layout_height="644dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="647dp"
             android:background="#E0E9E8">
 
             <com.google.android.material.navigation.NavigationView
@@ -38,7 +38,6 @@
                         android:layout_width="232dp"
                         android:layout_height="35dp"
                         android:layout_marginTop="12dp"
-                        android:text="123"
                         android:textAlignment="textStart"
                         android:textColor="#3E4140"
                         android:textSize="25sp"
@@ -49,7 +48,7 @@
 
                     <TextView
                         android:id="@+id/textSearchPoke"
-                        android:layout_width="230dp"
+                        android:layout_width="276dp"
                         android:layout_height="34dp"
                         android:layout_marginTop="4dp"
                         android:shadowColor="#666B6F"
@@ -96,7 +95,6 @@
                         android:id="@+id/textPokeDesc"
                         android:layout_width="355dp"
                         android:layout_height="141dp"
-                        android:text="Lorem ipsum"
                         android:textColor="#3E4140"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,7 +108,7 @@
                         android:id="@+id/toolbar"
                         android:layout_width="391dp"
                         android:layout_height="44dp"
-                        android:background="#8898A8"
+                        android:background="#F44336"
                         android:minHeight="?attr/actionBarSize"
                         android:theme="?attr/actionBarTheme"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -156,13 +154,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="#8898A8">
+                        android:background="#F44336"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/labelTextDefense"
                             android:layout_width="97dp"
                             android:layout_height="wrap_content"
+                            android:background="#F44336"
                             android:text="Defense"
                             android:textAlignment="center"
                             android:textColor="#FFFFFF" />
@@ -171,6 +170,7 @@
                             android:id="@+id/labelTextHP"
                             android:layout_width="97dp"
                             android:layout_height="wrap_content"
+                            android:background="#F44336"
                             android:text="HP"
                             android:textAlignment="center"
                             android:textColor="#FFFFFF" />
@@ -179,6 +179,7 @@
                             android:id="@+id/labelTextSpeed"
                             android:layout_width="97dp"
                             android:layout_height="wrap_content"
+                            android:background="#F44336"
                             android:text="Speed"
                             android:textAlignment="center"
                             android:textColor="#FFFFFF" />
@@ -187,6 +188,7 @@
                             android:id="@+id/labelTextAttack"
                             android:layout_width="97dp"
                             android:layout_height="wrap_content"
+                            android:background="#F44336"
                             android:text="Attack"
                             android:textAlignment="center"
                             android:textColor="#FFFFFF" />
@@ -195,32 +197,32 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:background="#eee">
+                        android:background="#eee"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/editTextDefense"
+                            android:id="@+id/textDefense"
                             android:layout_width="97dp"
                             android:layout_height="match_parent"
                             android:text="Defense"
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/editTextHP"
+                            android:id="@+id/textHP"
                             android:layout_width="97dp"
                             android:layout_height="match_parent"
                             android:text="HP"
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/editTextSpeed"
+                            android:id="@+id/textSpeed"
                             android:layout_width="97dp"
                             android:layout_height="match_parent"
                             android:text="Speed"
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/editTextAttack"
+                            android:id="@+id/textAttack"
                             android:layout_width="97dp"
                             android:layout_height="match_parent"
                             android:text="Attack"

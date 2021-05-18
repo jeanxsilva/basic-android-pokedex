@@ -24,14 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pokemonData">
+        <activity android:name=".PokemonData">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
 
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
-        <activity android:name=".errorSearch">
+        <activity android:name=".ErrorSearch">
             <intent-filter>
                 <action android:name="android.intent.action.APP_ERROR" />
 
